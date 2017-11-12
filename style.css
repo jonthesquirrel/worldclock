@@ -1,5 +1,6 @@
 body {
   overflow: hidden;
+  background: white;
 }
 
 .clock {
@@ -8,4 +9,27 @@ body {
   left: calc((100vw - 100vmin) / 2);
   width: 100vmin;
   height: 100vmin;
+}
+
+.face {
+  transform: translate(50vmin, 50vmin);
+}
+
+.circle {
+  fill: black;
+  stroke: black;
+  cx: 0;
+  cy: 0;
+  r: 40vmin;
+}
+
+.quarter-hour-tick {
+  stroke: white;
+  stroke-width: 0.3vmin;
+}
+
+.hour-tick {
+  stroke: white;
+  stroke-width: 1vmin;
+  stroke-linecap: round;
 }
