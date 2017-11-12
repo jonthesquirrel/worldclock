@@ -33,3 +33,10 @@ body {
   stroke-width: 1vmin;
   stroke-linecap: round;
 }
+
+.hour-text {
+  fill: white;
+  text-anchor: middle;
+  alignment-baseline: central;
+  font-size: 8vmin;
+}
