@@ -38,5 +38,6 @@ body {
   fill: white;
   text-anchor: middle;
   alignment-baseline: central;
-  font-size: 8vmin;
+  font-size: 5vmin;
+  font-family: sans-serif;
 }

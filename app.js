@@ -37,15 +37,10 @@ face.selectAll('.hour-tick')
       .attr('transform', (d, i) => `rotate(${hourScale(i)})`)
 
 face.selectAll('.hour-text')
-  .data([
-    '00', '01', '02', '03', '04', '05',
-    '06', '07', '08', '09', '10', '11',
-    '12', '13', '14', '15', '16', '17',
-    '18', '19', '20', '21', '22', '23'
-  ])
+  .data(['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'])
   .enter()
     .append('text')
       .classed('hour-text', true)
       .text(d => d)
-      // .attr('x', (d, i) => `rotate(${hourScale(i)})`)
-      // .attr('y', (d, i) => `rotate(${hourScale(i)})`)
+      .attr('x', (d, i) => `${33 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))}vmin`)
+      .attr('y', (d, i) => `${-33 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))}vmin`)
