@@ -41,3 +41,8 @@ body {
   font-size: 5vmin;
   font-family: sans-serif;
 }
+
+.hand {
+  stroke: green;
+  stroke-width: 1vmin;
+}
