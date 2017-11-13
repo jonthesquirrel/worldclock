@@ -67,12 +67,19 @@ face.selectAll('.hour-text')
   .append('text')
   .classed('hour-text', true)
   .text(d => d)
-  .attr('x', (d, i) => `${33 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))}vmin`)
-  .attr('y', (d, i) => `${-33 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))}vmin`)
+  .attr('x', (d, i) => `${
+    33 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))
+  }vmin`)
+  .attr('y', (d, i) => `${
+    -33 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))
+  }vmin`)
 
 let handScale = d3.scaleLinear()
   .range([0, 360 - 360 / (24 * 60)])
   .domain([0, (24 * 60) - 1])
+
+let utcOffsetColorScale = d3.scaleSequential(d3.interpolateRainbow)
+  .domain([0, 24 * 60])
 
 face.selectAll('.hand')
   .data([
@@ -91,3 +98,6 @@ face.selectAll('.hand')
   .attr('transform', d => `rotate(${
     handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
   })`)
+  .attr('stroke', d => utcOffsetColorScale(
+    moment().tz(d.zone).utcOffset()
+  ))
