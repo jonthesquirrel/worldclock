@@ -58,9 +58,6 @@ let handScale = d3.scaleLinear()
   .range([0, 360 - 360 / (24 * 60)])
   .domain([0, (24 * 60) - 1])
 
-let utcOffsetColorScale = d3.scaleSequential(d3.interpolateRainbow)
-  .domain([0, 24 * 60])
-
 let handData = [
   {zone: 'Europe/London', label: 'London'},
   {zone: 'Europe/Berlin', label: 'Berlin'},
@@ -115,9 +112,6 @@ hands.append('line')
   .attr('y1', '38.5vmin')
   // city label outer
   .attr('y2', '49.5vmin')
-  .attr('stroke', d => utcOffsetColorScale(
-    moment().tz(d.zone).utcOffset()
-  ))
 
 hands.append('text')
   .text(d => d.label)
@@ -125,12 +119,33 @@ hands.append('text')
   // city label text distance
   .attr('x', '44vmin')
 
+let dateline = face.selectAll('.dateline')
+  .data(Array(1))
+  .enter()
+  .append('line')
+  .classed('dateline', true)
+  .attr('x1', '0')
+  .attr('x2', '0')
+  // date line inner
+  .attr('y1', '38.5vmin')
+  // date line outer
+  .attr('y2', '49.5vmin')
+  .attr('transform', d => `rotate(${
+    handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))
+  })`)
+
 function updateHands() {
   hands.data(handData)
     .transition()
     .attr('transform', d => `rotate(${
       handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
     })`)
+
+  dateline.data(Array(1))
+  .transition()
+  .attr('transform', d => `rotate(${
+    handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))
+  })`)
 }
 
 setInterval(updateHands, 60 * 1000)

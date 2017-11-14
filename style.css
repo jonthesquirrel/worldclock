@@ -36,6 +36,7 @@ body {
 
 .hand line {
   stroke-width: 2.3vmin;
+  stroke: black;
 }
 
 .hand text {
@@ -44,4 +45,9 @@ body {
   font-size: 1.7vmin;
   alignment-baseline: central;
   text-anchor: middle;
+}
+
+.dateline {
+  stroke: black;
+  stroke-width: 0.3vmin;
 }
