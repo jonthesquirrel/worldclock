@@ -5,6 +5,8 @@ let face = clock.append('g')
 
 face.append('circle')
   .classed('circle', true)
+  // circle radius
+  .attr('r', '35vmin')
 
 let quarterHourScale = d3.scaleLinear()
   .range([0, 360 - 360 / 96])
@@ -17,8 +19,10 @@ face.selectAll('.quarter-hour-tick')
   .classed('quarter-hour-tick', true)
   .attr('x1', '0')
   .attr('x2', '0')
-  .attr('y1', '42vmin')
-  .attr('y2', '38vmin')
+  // little tick length start
+  .attr('y1', '33.8vmin')
+  // little tick length end
+  .attr('y2', '36vmin')
   .attr('transform', (d, i) => `rotate(${quarterHourScale(i)})`)
 
 let hourScale = d3.scaleLinear()
@@ -32,46 +36,27 @@ face.selectAll('.hour-tick')
   .classed('hour-tick', true)
   .attr('x1', '0')
   .attr('x2', '0')
-  .attr('y1', '42vmin')
-  .attr('y2', '38vmin')
+  // big tick length start
+  .attr('y1', '33.5vmin')
+  // big tick length end
+  .attr('y2', '36vmin')
   .attr('transform', (d, i) => `rotate(${hourScale(i)})`)
 
 face.selectAll('.hour-text')
   .data([
-    '00',
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-    '20',
-    '21',
-    '22',
-    '23'
+    '00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'
   ])
   .enter()
   .append('text')
   .classed('hour-text', true)
   .text(d => d)
   .attr('x', (d, i) => `${
-    33 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))
+    // numbers radius
+    29.3 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))
   }vmin`)
   .attr('y', (d, i) => `${
-    -33 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))
+    // numbers radius
+    -29.2 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))
   }vmin`)
 
 let handScale = d3.scaleLinear()
@@ -100,7 +85,9 @@ let hand = face.selectAll('.hand')
 hand.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
-  .attr('y1', '40.3vmin')
+  // hand length start
+  .attr('y1', '35.4vmin')
+  // hand length end
   .attr('y2', '49.5vmin')
   .attr('stroke', d => utcOffsetColorScale(
     moment().tz(d.zone).utcOffset()
@@ -109,4 +96,5 @@ hand.append('line')
 hand.append('text')
   .text(d => d.label)
   .attr('transform', 'rotate(90)')
-  .attr('x', '40.5vmin')
+  // city name radius
+  .attr('x', '35.7vmin')

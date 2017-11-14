@@ -20,7 +20,6 @@ body {
   stroke: black;
   cx: 0;
   cy: 0;
-  r: 40vmin;
 }
 
 .quarter-hour-tick {
