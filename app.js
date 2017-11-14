@@ -67,10 +67,41 @@ let utcOffsetColorScale = d3.scaleSequential(d3.interpolateRainbow)
   .domain([0, 24 * 60])
 
 let handData = [
-  {zone: 'America/New_York', label: 'New York'},
-  {zone: 'America/Chicago', label: 'Chicago'},
+  {zone: 'Europe/London', label: 'London'},
+  {zone: 'Europe/Berlin', label: 'Berlin'},
+  {zone: 'Europe/Athens', label: 'Athens'},
+  {zone: 'Europe/Moscow', label: 'Moscow'},
+  {zone: 'Asia/Tehran', label: 'Tehran'},
+  {zone: 'Asia/Dubai', label: 'Dubai'},
+  {zone: 'Asia/Kabul', label: 'Kabul'},
+  {zone: 'Asia/Tashkent', label: 'Tashkent'},
+  {zone: 'Asia/Kolkata', label: 'Kolkata'},
+  {zone: 'Asia/Kathmandu', label: 'Kathmandu'},
+  {zone: 'Asia/Dhaka', label: 'Dhaka'},
+  {zone: 'Asia/Yangon', label: 'Yangon'},
+  {zone: 'Asia/Jakarta', label: 'Jakarta'},
+  {zone: 'Asia/Shanghai', label: 'Shanghai'},
+  {zone: 'Asia/Pyongyang', label: 'Pyongyang'},
+  {zone: 'Australia/Eucla', label: 'Eucla'},
+  {zone: 'Asia/Tokyo', label: 'Tokyo'},
+  {zone: 'Australia/Darwin', label: 'Darwin'},
+  {zone: 'Australia/Brisbane', label: 'Brisbane'},
+  {zone: 'Australia/Adelaide', label: 'Adelaide'},
+  {zone: 'Australia/Melbourne', label: 'Melbourne'},
+  {zone: 'Pacific/Auckland', label: 'Auckland'},
+  {zone: 'Asia/Anadyr', label: 'Anadyr'},
+  {zone: 'Pacific/Honolulu', label: 'Honolulu'},
+  {zone: 'America/Anchorage', label: 'Anchorage'},
+  {zone: 'America/Los_Angeles', label: 'Los Angeles'},
   {zone: 'America/Denver', label: 'Denver'},
-  {zone: 'America/Los_Angeles', label: 'San Francisco'}
+  {zone: 'America/Chicago', label: 'Chicago'},
+  {zone: 'America/New_York', label: 'New York'},
+  {zone: 'America/Sao_Paulo', label: 'Sao Paulo'},
+  {zone: 'Atlantic/Cape_Verde', label: 'Cape Verde'},
+  {zone: 'America/Buenos_Aires', label: 'Buenos Aires'},
+  {zone: 'America/St_Johns', label: "St. John's"},
+  {zone: 'America/Caracas', label: 'Caracas'},
+  {zone: 'Pacific/Marquesas', label: 'Marquesas'}
 ]
 
 let hands = face.selectAll('.hand')
