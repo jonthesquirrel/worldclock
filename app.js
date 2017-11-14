@@ -138,40 +138,42 @@ dateline.append('line')
   .attr('y2', '49.5vmin')
 
 // will daylight savings time mess up the dateline text if done this way?
-dateline.append('text')
-  //TODO refresh text for date lines in updateHands
-  .text(moment().tz('Pacific/Honolulu').format('dddd'))
-  .attr('transform', 'rotate(91.5)')
-  // text distance
-  .attr('x', '44vmin')
 
 dateline.append('text')
+  .classed('idl-before', true)
   .text(moment().tz('Pacific/Auckland').format('dddd'))
   .attr('transform', 'rotate(88.5)')
   // text distance
   .attr('x', '44vmin')
 
-// midlight line
-face.append('text')
-  .classed('dateline', true)
-  .text(moment().tz('Pacific/Auckland').format('dddd'))
-  .attr('transform', 'rotate(93)')
-  .attr('x', '24.5vmin')
-
-face.append('text')
-  .classed('dateline', true)
+dateline.append('text')
+  .classed('idl-after', true)
   .text(moment().tz('Pacific/Honolulu').format('dddd'))
-  .attr('transform', 'rotate(87)')
-  .attr('x', '24.5vmin')
+  .attr('transform', 'rotate(91.5)')
+  // text distance
+  .attr('x', '44vmin')
 
+// midlight line
 face.append('line')
-  .classed('dateline', true)
+  .classed('dateline midnight-after', true)
   .attr('x1', '0')
   .attr('x2', '0')
   // midnight line inner
   .attr('y1', '20.5vmin')
   // midnight line outer
   .attr('y2', '28vmin')
+
+face.append('text')
+  .classed('dateline midnight-before', true)
+  .text(moment().tz('Pacific/Honolulu').format('dddd'))
+  .attr('transform', 'rotate(87)')
+  .attr('x', '24.5vmin')
+
+face.append('text')
+  .classed('dateline midnight-after', true)
+  .text(moment().tz('Pacific/Auckland').format('dddd'))
+  .attr('transform', 'rotate(93)')
+  .attr('x', '24.5vmin')
 
 function updateHands() {
   hands.data(handData)
@@ -185,6 +187,15 @@ function updateHands() {
     .attr('transform', `rotate(${
       handScale(moment().utc().utcOffset(13.5 * 60).diff(moment().utc().utcOffset(13.5 * 60).startOf('day'), 'minutes'))
     })`)
+
+  face.select('.idl-before')
+    .text(moment().tz('Pacific/Auckland').format('dddd'))
+  face.select('.idl-after')
+    .text(moment().tz('Pacific/Honolulu').format('dddd'))
+  face.select('.midnight-before')
+    .text(moment().tz('Pacific/Honolulu').format('dddd'))
+  face.select('.midnight-after')
+    .text(moment().tz('Pacific/Auckland').format('dddd'))
 }
 
 setInterval(updateHands, 60 * 1000)
