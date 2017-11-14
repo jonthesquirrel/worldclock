@@ -119,16 +119,17 @@ hands.append('text')
   // city label text distance
   .attr('x', '44vmin')
 
-let datelines = face.selectAll('.dateline')
+// approximation, actual international date line is jagged
+let idl = face.selectAll('.dateline')
   .data(Array(1))
   .enter()
   .append('g')
   .classed('dateline', true)
   .attr('transform', d => `rotate(${
-    handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))
+    handScale(moment().utc().utcOffset(13.5 * 60).diff(moment().utc().utcOffset(13.5 * 60).startOf('day'), 'minutes'))
   })`)
 
-datelines.append('line')
+idl.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // date line inner
@@ -136,14 +137,14 @@ datelines.append('line')
   // date line outer
   .attr('y2', '49.5vmin')
 
-datelines.append('text')
-  .text(d => 'Monday')
+idl.append('text')
+  .text(moment().tz('America/Anchorage').format('dddd'))
   .attr('transform', 'rotate(91.5)')
   // text distance
   .attr('x', '44vmin')
 
-datelines.append('text')
-  .text(d => 'Tuesday')
+idl.append('text')
+  .text(moment().tz('Pacific/Auckland').format('dddd'))
   .attr('transform', 'rotate(88.5)')
   // text distance
   .attr('x', '44vmin')
@@ -155,11 +156,11 @@ function updateHands() {
       handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
     })`)
 
-  datelines.data(Array(1))
-  .transition()
-  .attr('transform', d => `rotate(${
-    handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))
-  })`)
+  idl.data(Array(1))
+    .transition()
+    .attr('transform', `rotate(${
+      handScale(moment().utc().utcOffset(13.5 * 60).diff(moment().utc().utcOffset(13.5 * 60).startOf('day'), 'minutes'))
+    })`)
 }
 
 setInterval(updateHands, 60 * 1000)
