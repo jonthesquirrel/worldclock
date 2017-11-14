@@ -139,7 +139,7 @@ dateline.append('line')
 
 // will daylight savings time mess up the dateline text if done this way?
 dateline.append('text')
-  //TODO refresh day text in updateHands
+  //TODO refresh text for date lines in updateHands
   .text(moment().tz('Pacific/Honolulu').format('dddd'))
   .attr('transform', 'rotate(91.5)')
   // text distance
@@ -154,13 +154,13 @@ dateline.append('text')
 // midlight line
 face.append('text')
   .classed('dateline', true)
-  .text('Tuesday')
+  .text(moment().tz('Pacific/Auckland').format('dddd'))
   .attr('transform', 'rotate(93)')
   .attr('x', '24.5vmin')
 
 face.append('text')
   .classed('dateline', true)
-  .text('Monday')
+  .text(moment().tz('Pacific/Honolulu').format('dddd'))
   .attr('transform', 'rotate(87)')
   .attr('x', '24.5vmin')
 
