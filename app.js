@@ -120,16 +120,16 @@ hands.append('text')
   .attr('x', '44vmin')
 
 // approximation, actual international date line is jagged
-let idl = face.selectAll('.dateline')
+let dateline = face.selectAll('.dateline.idl')
   .data(Array(1))
   .enter()
   .append('g')
-  .classed('dateline', true)
+  .classed('dateline idl', true)
   .attr('transform', d => `rotate(${
     handScale(moment().utc().utcOffset(13.5 * 60).diff(moment().utc().utcOffset(13.5 * 60).startOf('day'), 'minutes'))
   })`)
 
-idl.append('line')
+dateline.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // date line inner
@@ -137,17 +137,41 @@ idl.append('line')
   // date line outer
   .attr('y2', '49.5vmin')
 
-idl.append('text')
-  .text(moment().tz('America/Anchorage').format('dddd'))
+// will daylight savings time mess up the dateline text if done this way?
+dateline.append('text')
+  //TODO refresh day text in updateHands
+  .text(moment().tz('Pacific/Honolulu').format('dddd'))
   .attr('transform', 'rotate(91.5)')
   // text distance
   .attr('x', '44vmin')
 
-idl.append('text')
+dateline.append('text')
   .text(moment().tz('Pacific/Auckland').format('dddd'))
   .attr('transform', 'rotate(88.5)')
   // text distance
   .attr('x', '44vmin')
+
+// midlight line
+face.append('text')
+  .classed('dateline', true)
+  .text('Tuesday')
+  .attr('transform', 'rotate(93)')
+  .attr('x', '24.5vmin')
+
+face.append('text')
+  .classed('dateline', true)
+  .text('Monday')
+  .attr('transform', 'rotate(87)')
+  .attr('x', '24.5vmin')
+
+face.append('line')
+  .classed('dateline', true)
+  .attr('x1', '0')
+  .attr('x2', '0')
+  // midnight line inner
+  .attr('y1', '20.5vmin')
+  // midnight line outer
+  .attr('y2', '28vmin')
 
 function updateHands() {
   hands.data(handData)
@@ -156,7 +180,7 @@ function updateHands() {
       handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
     })`)
 
-  idl.data(Array(1))
+  dateline.data(Array(1))
     .transition()
     .attr('transform', `rotate(${
       handScale(moment().utc().utcOffset(13.5 * 60).diff(moment().utc().utcOffset(13.5 * 60).startOf('day'), 'minutes'))
