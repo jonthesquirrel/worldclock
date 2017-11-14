@@ -73,7 +73,7 @@ let handData = [
   {zone: 'America/Los_Angeles', label: 'San Francisco'}
 ]
 
-let hand = face.selectAll('.hand')
+let hands = face.selectAll('.hand')
   .data(handData)
   .enter()
   .append('g')
@@ -82,7 +82,7 @@ let hand = face.selectAll('.hand')
     handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
   })`)
 
-hand.append('line')
+hands.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // hand length start
@@ -93,8 +93,18 @@ hand.append('line')
     moment().tz(d.zone).utcOffset()
   ))
 
-hand.append('text')
+hands.append('text')
   .text(d => d.label)
   .attr('transform', 'rotate(90)')
   // city name radius
   .attr('x', '35.7vmin')
+
+function updateHands() {
+  hands.data(handData)
+    .transition()
+    .attr('transform', d => `rotate(${
+      handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
+    })`)
+}
+
+setInterval(updateHands, 60 * 1000)
