@@ -119,20 +119,34 @@ hands.append('text')
   // city label text distance
   .attr('x', '44vmin')
 
-let dateline = face.selectAll('.dateline')
+let datelines = face.selectAll('.dateline')
   .data(Array(1))
   .enter()
-  .append('line')
+  .append('g')
   .classed('dateline', true)
+  .attr('transform', d => `rotate(${
+    handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))
+  })`)
+
+datelines.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // date line inner
   .attr('y1', '38.5vmin')
   // date line outer
   .attr('y2', '49.5vmin')
-  .attr('transform', d => `rotate(${
-    handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))
-  })`)
+
+datelines.append('text')
+  .text(d => 'Monday')
+  .attr('transform', 'rotate(91.5)')
+  // text distance
+  .attr('x', '44vmin')
+
+datelines.append('text')
+  .text(d => 'Tuesday')
+  .attr('transform', 'rotate(88.5)')
+  // text distance
+  .attr('x', '44vmin')
 
 function updateHands() {
   hands.data(handData)
@@ -141,7 +155,7 @@ function updateHands() {
       handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
     })`)
 
-  dateline.data(Array(1))
+  datelines.data(Array(1))
   .transition()
   .attr('transform', d => `rotate(${
     handScale(moment().utc().utcOffset(810).diff(moment().utc().utcOffset(810).startOf('day'), 'minutes'))

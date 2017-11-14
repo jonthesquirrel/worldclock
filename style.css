@@ -47,7 +47,15 @@ body {
   text-anchor: middle;
 }
 
-.dateline {
+.dateline line {
   stroke: black;
   stroke-width: 0.3vmin;
+}
+
+.dateline text {
+  fill: black;
+  font-family: sans-serif;
+  font-size: 1.7vmin;
+  alignment-baseline: central;
+  text-anchor: middle;
 }
