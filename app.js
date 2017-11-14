@@ -3,11 +3,6 @@ let clock = d3.select('.clock')
 let face = clock.append('g')
   .classed('face', true)
 
-face.append('circle')
-  .classed('circle', true)
-  // circle radius
-  .attr('r', '35vmin')
-
 let quarterHourScale = d3.scaleLinear()
   .range([0, 360 - 360 / 96])
   .domain([0, 96 - 1])
@@ -20,9 +15,9 @@ face.selectAll('.quarter-hour-tick')
   .attr('x1', '0')
   .attr('x2', '0')
   // little tick length start
-  .attr('y1', '33.8vmin')
+  .attr('y1', '34.9vmin')
   // little tick length end
-  .attr('y2', '36vmin')
+  .attr('y2', '37.3vmin')
   .attr('transform', (d, i) => `rotate(${quarterHourScale(i)})`)
 
 let hourScale = d3.scaleLinear()
@@ -37,9 +32,9 @@ face.selectAll('.hour-tick')
   .attr('x1', '0')
   .attr('x2', '0')
   // big tick length start
-  .attr('y1', '33.5vmin')
+  .attr('y1', '34.9vmin')
   // big tick length end
-  .attr('y2', '36vmin')
+  .attr('y2', '37.3vmin')
   .attr('transform', (d, i) => `rotate(${hourScale(i)})`)
 
 face.selectAll('.hour-text')
@@ -52,11 +47,11 @@ face.selectAll('.hour-text')
   .text(d => d)
   .attr('x', (d, i) => `${
     // numbers radius
-    29.3 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))
+    30.6 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))
   }vmin`)
   .attr('y', (d, i) => `${
     // numbers radius
-    -29.2 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))
+    -30.6 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))
   }vmin`)
 
 let handScale = d3.scaleLinear()
@@ -116,9 +111,9 @@ let hands = face.selectAll('.hand')
 hands.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
-  // hand length start
-  .attr('y1', '35.4vmin')
-  // hand length end
+  // city label inner
+  .attr('y1', '38.5vmin')
+  // city label outer
   .attr('y2', '49.5vmin')
   .attr('stroke', d => utcOffsetColorScale(
     moment().tz(d.zone).utcOffset()
@@ -127,8 +122,8 @@ hands.append('line')
 hands.append('text')
   .text(d => d.label)
   .attr('transform', 'rotate(90)')
-  // city name radius
-  .attr('x', '35.7vmin')
+  // city label text distance
+  .attr('x', '44vmin')
 
 function updateHands() {
   hands.data(handData)
