@@ -101,9 +101,6 @@ let hands = face.selectAll('.hand')
   .enter()
   .append('g')
   .classed('hand', true)
-  .attr('transform', d => `rotate(${
-    handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
-  })`)
 
 hands.append('line')
   .attr('x1', '0')
@@ -125,9 +122,6 @@ let dateline = face.selectAll('.dateline.idl')
   .enter()
   .append('g')
   .classed('dateline idl', true)
-  .attr('transform', d => `rotate(${
-    handScale(moment().utc().utcOffset(13.5 * 60).diff(moment().utc().utcOffset(13.5 * 60).startOf('day'), 'minutes'))
-  })`)
 
 dateline.append('line')
   .attr('x1', '0')
@@ -141,21 +135,19 @@ dateline.append('line')
 
 dateline.append('text')
   .classed('idl-before', true)
-  .text(moment().tz('Pacific/Auckland').format('dddd'))
   .attr('transform', 'rotate(88.5)')
   // text distance
   .attr('x', '44vmin')
 
 dateline.append('text')
   .classed('idl-after', true)
-  .text(moment().tz('Pacific/Honolulu').format('dddd'))
   .attr('transform', 'rotate(91.5)')
   // text distance
   .attr('x', '44vmin')
 
 // midlight line
 face.append('line')
-  .classed('dateline midnight-after', true)
+  .classed('dateline', true)
   .attr('x1', '0')
   .attr('x2', '0')
   // midnight line inner
@@ -165,13 +157,11 @@ face.append('line')
 
 face.append('text')
   .classed('dateline midnight-before', true)
-  .text(moment().tz('Pacific/Honolulu').format('dddd'))
   .attr('transform', 'rotate(87)')
   .attr('x', '24.5vmin')
 
 face.append('text')
   .classed('dateline midnight-after', true)
-  .text(moment().tz('Pacific/Auckland').format('dddd'))
   .attr('transform', 'rotate(93)')
   .attr('x', '24.5vmin')
 
@@ -198,4 +188,5 @@ function updateHands() {
     .text(moment().tz('Pacific/Auckland').format('dddd'))
 }
 
+updateHands()
 setInterval(updateHands, 60 * 1000)
