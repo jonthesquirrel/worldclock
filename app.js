@@ -81,23 +81,32 @@ let handScale = d3.scaleLinear()
 let utcOffsetColorScale = d3.scaleSequential(d3.interpolateRainbow)
   .domain([0, 24 * 60])
 
-face.selectAll('.hand')
-  .data([
-    {zone: 'America/New_York', label: 'New York'},
-    {zone: 'America/Chicago', label: 'Chicago'},
-    {zone: 'America/Denver', label: 'Denver'},
-    {zone: 'America/Los_Angeles', label: 'San Francisco'}
-  ])
+let handData = [
+  {zone: 'America/New_York', label: 'New York'},
+  {zone: 'America/Chicago', label: 'Chicago'},
+  {zone: 'America/Denver', label: 'Denver'},
+  {zone: 'America/Los_Angeles', label: 'San Francisco'}
+]
+
+let hand = face.selectAll('.hand')
+  .data(handData)
   .enter()
-  .append('line')
+  .append('g')
   .classed('hand', true)
-  .attr('x1', '0')
-  .attr('x2', '0')
-  .attr('y1', '40.3vmin')
-  .attr('y2', '48vmin')
   .attr('transform', d => `rotate(${
     handScale(moment().tz(d.zone).diff(moment().tz(d.zone).startOf('day'), 'minutes'))
   })`)
+
+hand.append('line')
+  .attr('x1', '0')
+  .attr('x2', '0')
+  .attr('y1', '40.3vmin')
+  .attr('y2', '49.5vmin')
   .attr('stroke', d => utcOffsetColorScale(
     moment().tz(d.zone).utcOffset()
   ))
+
+hand.append('text')
+  .text(d => d.label)
+  .attr('transform', 'rotate(90)')
+  .attr('x', '40.5vmin')
