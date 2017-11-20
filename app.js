@@ -101,6 +101,7 @@ let hands = face.selectAll('.hand')
   .enter()
   .append('g')
   .classed('hand', true)
+  .classed('local', d => moment().tz(moment.tz.guess()).utcOffset() == moment().tz(d.zone).utcOffset())
 
 hands.append('line')
   .attr('x1', '0')
