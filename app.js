@@ -146,25 +146,25 @@ dateline.append('text')
   // text distance
   .attr('x', '44px')
 
-// midlight line
+// midnight (inner) dateline
 face.append('line')
   .classed('dateline', true)
   .attr('x1', '0')
   .attr('x2', '0')
   // midnight line inner
-  .attr('y1', '20.5px')
+  .attr('y1', '15px')
   // midnight line outer
-  .attr('y2', '28px')
+  .attr('y2', '26px')
 
 face.append('text')
   .classed('dateline midnight-before', true)
-  .attr('transform', 'rotate(87)')
-  .attr('x', '24.5px')
+  .attr('transform', 'rotate(86)')
+  .attr('x', '20.5px')
 
 face.append('text')
   .classed('dateline midnight-after', true)
-  .attr('transform', 'rotate(93)')
-  .attr('x', '24.5px')
+  .attr('transform', 'rotate(94)')
+  .attr('x', '20.5px')
 
 function updateHands() {
   hands.data(handData)
