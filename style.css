@@ -12,17 +12,17 @@ body {
 }
 
 .face {
-  transform: translate(50vmin, 50vmin);
+  transform: translate(50px, 50px);
 }
 
 .quarter-hour-tick {
   stroke: black;
-  stroke-width: 0.3vmin;
+  stroke-width: 0.3px;
 }
 
 .hour-tick {
   stroke: black;
-  stroke-width: 1vmin;
+  stroke-width: 1px;
   stroke-linecap: round;
 }
 
@@ -30,19 +30,19 @@ body {
   fill: black;
   text-anchor: middle;
   alignment-baseline: central;
-  font-size: 5vmin;
+  font-size: 0.3rem;
   font-family: sans-serif;
 }
 
 .hand line {
-  stroke-width: 2.3vmin;
+  stroke-width: 2.3px;
   stroke: gray;
 }
 
 .hand text {
   fill: white;
   font-family: sans-serif;
-  font-size: 1.7vmin;
+  font-size: 0.1rem;
   alignment-baseline: central;
   text-anchor: middle;
 }
@@ -53,13 +53,13 @@ body {
 
 line.dateline, .dateline line {
   stroke: black;
-  stroke-width: 0.1vmin;
+  stroke-width: 0.1px;
 }
 
 text.dateline, .dateline text {
   fill: black;
   font-family: sans-serif;
-  font-size: 1.7vmin;
+  font-size: 0.1rem;
   alignment-baseline: central;
   text-anchor: middle;
   font-weight: bold;

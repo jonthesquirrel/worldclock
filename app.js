@@ -15,9 +15,9 @@ face.selectAll('.quarter-hour-tick')
   .attr('x1', '0')
   .attr('x2', '0')
   // little tick length start
-  .attr('y1', '34.9vmin')
+  .attr('y1', '34.9px')
   // little tick length end
-  .attr('y2', '37.3vmin')
+  .attr('y2', '37.3px')
   .attr('transform', (d, i) => `rotate(${quarterHourScale(i)})`)
 
 let hourScale = d3.scaleLinear()
@@ -32,9 +32,9 @@ face.selectAll('.hour-tick')
   .attr('x1', '0')
   .attr('x2', '0')
   // big tick length start
-  .attr('y1', '34.9vmin')
+  .attr('y1', '34.9px')
   // big tick length end
-  .attr('y2', '37.3vmin')
+  .attr('y2', '37.3px')
   .attr('transform', (d, i) => `rotate(${hourScale(i)})`)
 
 face.selectAll('.hour-text')
@@ -48,11 +48,11 @@ face.selectAll('.hour-text')
   .attr('x', (d, i) => `${
     // numbers radius
     30.6 * Math.sin(Math.PI / 180 * (hourScale(i) + 180))
-  }vmin`)
+  }px`)
   .attr('y', (d, i) => `${
     // numbers radius
     -30.6 * Math.cos(Math.PI / 180 * (hourScale(i) + 180))
-  }vmin`)
+  }px`)
 
 let handScale = d3.scaleLinear()
   .range([0, 360 - 360 / (24 * 60)])
@@ -107,15 +107,15 @@ hands.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // city label inner
-  .attr('y1', '38.5vmin')
+  .attr('y1', '38.5px')
   // city label outer
-  .attr('y2', '49.5vmin')
+  .attr('y2', '49.5px')
 
 hands.append('text')
   .text(d => d.label)
   .attr('transform', 'rotate(90)')
   // city label text distance
-  .attr('x', '44vmin')
+  .attr('x', '44px')
 
 // approximation, actual international date line is jagged
 let dateline = face.selectAll('.dateline.idl')
@@ -128,9 +128,9 @@ dateline.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // date line inner
-  .attr('y1', '38.5vmin')
+  .attr('y1', '38.5px')
   // date line outer
-  .attr('y2', '49.5vmin')
+  .attr('y2', '49.5px')
 
 // will daylight savings time mess up the dateline text if done this way?
 
@@ -138,13 +138,13 @@ dateline.append('text')
   .classed('idl-before', true)
   .attr('transform', 'rotate(88.5)')
   // text distance
-  .attr('x', '44vmin')
+  .attr('x', '44px')
 
 dateline.append('text')
   .classed('idl-after', true)
   .attr('transform', 'rotate(91.5)')
   // text distance
-  .attr('x', '44vmin')
+  .attr('x', '44px')
 
 // midlight line
 face.append('line')
@@ -152,19 +152,19 @@ face.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // midnight line inner
-  .attr('y1', '20.5vmin')
+  .attr('y1', '20.5px')
   // midnight line outer
-  .attr('y2', '28vmin')
+  .attr('y2', '28px')
 
 face.append('text')
   .classed('dateline midnight-before', true)
   .attr('transform', 'rotate(87)')
-  .attr('x', '24.5vmin')
+  .attr('x', '24.5px')
 
 face.append('text')
   .classed('dateline midnight-after', true)
   .attr('transform', 'rotate(93)')
-  .attr('x', '24.5vmin')
+  .attr('x', '24.5px')
 
 function updateHands() {
   hands.data(handData)
