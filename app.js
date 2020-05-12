@@ -152,19 +152,19 @@ face.append('line')
   .attr('x1', '0')
   .attr('x2', '0')
   // midnight line inner
-  .attr('y1', '15px')
+  .attr('y1', '14px')
   // midnight line outer
-  .attr('y2', '26px')
+  .attr('y2', '27px')
 
 face.append('text')
   .classed('dateline midnight-before', true)
   .attr('transform', 'rotate(86)')
-  .attr('x', '20.5px')
+  .attr('x', '21px')
 
 face.append('text')
   .classed('dateline midnight-after', true)
   .attr('transform', 'rotate(94)')
-  .attr('x', '20.5px')
+  .attr('x', '21px')
 
 function updateHands() {
   hands.data(handData)
