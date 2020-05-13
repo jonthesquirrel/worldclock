@@ -189,8 +189,11 @@ function updateHands() {
     .text(moment().tz('Pacific/Auckland').format('dddd'))
 }
 
+// initialize clock
 updateHands()
-setInterval(updateHands, 60 * 1000)
+
+// update every second
+setInterval(updateHands, 1 * 1000)
 
 // Credit David Walsh (https://davidwalsh.name/javascript-debounce-function)
 // Returns a function, that, as long as it continues to be invoked, will not
