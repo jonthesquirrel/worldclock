@@ -232,7 +232,7 @@ function showUI() {
 }
 
 // hide github corner after mouse movement has stopped for a bit
-let mouseHideTimer = debounce(hideUI, 500)
+let mouseHideTimer = debounce(hideUI, 750)
 
 window.addEventListener("mousemove", () => {
   // show github corner
